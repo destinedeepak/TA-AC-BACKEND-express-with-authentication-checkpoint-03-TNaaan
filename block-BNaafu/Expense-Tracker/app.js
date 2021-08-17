@@ -3,17 +3,25 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var sassMiddleware = require('node-sass-middleware');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var flash = require('connect-flash');
+var MongoStore = require('connect-mongo');
+var auth = require('./middlewares/auth');
+var passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var mongoURL = 'mongodb://localhost/expenseTrackerDB';
+require('dotenv').config();
+
+var mongoUrl = 'mongodb://localhost/expenseTrackerDB';
 // db connection 
-mongoose.connect(mongoURL,
+mongoose.connect(mongoUrl,
   {useNewUrlParser: true, useUnifiedTopology:true},
   (error) => console.log(error ? error : "Database connected!"))
+
+require('./modules/passport')
 
 var app = express();
 
@@ -25,13 +33,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: true, // true = .sass and false = .scss
-  sourceMap: true
-}));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: process.env.SECRET,
+  saveUninitialized:false,
+  resave: false,
+  store: MongoStore.create({mongoUrl})
+}))
+
+app.use(flash());
+app.use(auth.userInfo);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
