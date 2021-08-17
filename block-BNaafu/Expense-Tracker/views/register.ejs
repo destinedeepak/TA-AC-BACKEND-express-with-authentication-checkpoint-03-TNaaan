@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <section class="container1">
+            <form action="/users" method="post">
+                <p class="error">
+                    <% if(error){ %>
+                        <p><%=error%></p>
+                    <% } %> 
+                </p>
+                <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="Name" name="name" required>
+                    </div>
+                  </div>
+                  
+                  <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                      <input class="input" type="email" placeholder="Email" name="email" required>
+                    </div>
+                  </div>
+                  
+                  <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                      <input class="input" type="password" placeholder="Password" name="password" required>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label class="label">Age</label>
+                    <div class="control">
+                      <input class="input" type="number" placeholder="Age" name="age">
+                    </div>
+                  </div>
+    
+                  <div class="field">
+                    <label class="label">Phone</label>
+                    <div class="control">
+                      <input class="input" type="number" placeholder="Phone no" name="Phone">
+                    </div>
+                  </div>
+                  
+                  <div class="field">
+                    <label class="label">Country</label>
+                    <div class="control">
+                      <input class="input" type="text" placeholder="text" name="country">
+                    </div>
+                  </div>
+                  
+                  <div class="field is-grouped">
+                    <div class="control">
+                      <button class="button is-link">Sign Up</button>
+                    </div>
+                    <div class="control">
+                      <button class="button is-link is-light">Cancel</button>
+                    </div>
+                  </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
