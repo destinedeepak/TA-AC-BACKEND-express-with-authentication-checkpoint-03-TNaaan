@@ -14,8 +14,11 @@
             <form action="/users" method="post">
                 <p class="error">
                     <% if(error){ %>
-                        <p><%=error%></p>
+                        <p><%=error%></p> 
                     <% } %> 
+                    <% if(user && !user.isverified){ %>
+                        <a href="/users/resendw">Resend</a>
+                    <% } %>  
                 </p>
                 <div class="field">
                     <label class="label">Name</label>

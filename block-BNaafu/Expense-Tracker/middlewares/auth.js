@@ -8,7 +8,8 @@ module.exports = {
         }
     },
     userInfo: (req, res, next) => {
-        var userId = req.session && req.session.userId
+        var userId = req.session && req.session.userId;
+        console.log(req.session,"idd");
         if(userId){
             User.findById(userId, (error, user) => {
                 req.user = user;

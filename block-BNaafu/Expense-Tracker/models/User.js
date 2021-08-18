@@ -8,7 +8,8 @@ var userSchema = new Schema({
     password: {type:String},
     age: {type:Number},
     phone: {type:Number},
-    country: String
+    country: String,
+    isVerified:{type: Boolean, default: false}
 }, {timestamps: true})
 
 userSchema.pre('save', function(next){
