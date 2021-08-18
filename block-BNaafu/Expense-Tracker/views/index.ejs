@@ -7,11 +7,16 @@
   </head>
   <body>
     <header class="container">
+      <p class="error">
+        <% if(error){ %>
+            <p><%=error%></p>
+        <% } %> 
+    </p>
       <%include partials/header%>
     </header>
     <main>
       <section class="container">
-        <a href="/users/new">Sign Up</a>
+        Home
       </section>
     </main>
   </body>

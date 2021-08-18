@@ -12,6 +12,8 @@ var passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var expenseRouter = require('./routes/expense');
+var incomeRouter = require('./routes/income');
 
 require('dotenv').config();
 
@@ -39,16 +41,19 @@ app.use(session({
   secret: process.env.SECRET,
   saveUninitialized:false,
   resave: false,
-  store: MongoStore.create({mongoUrl})
+  store: MongoStore.create({mongoUrl:mongoUrl})
 }))
 
 app.use(flash());
 app.use(auth.userInfo);
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/expense', expenseRouter);
+app.use('/income', incomeRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

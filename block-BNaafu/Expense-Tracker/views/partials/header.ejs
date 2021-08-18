@@ -20,5 +20,8 @@
             </ul>
         <% } %>   
     </header>
+    <% if(user && !user.isVerified){ %>
+        <p>Please verify your email address by sending link to your email address!<a href="/users/resend">Send</a></p>
+    <% } %>  
 </body>
 </html>
