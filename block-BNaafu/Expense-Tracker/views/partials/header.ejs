@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header class="flex">
+        <a href="/">Expense Tracker</a>
+        <% if(!user){%>
+            <ul>
+                <li><a href="/users/login">Login</a></li>
+            </ul>
+        <% }else{%>
+            <ul class="flex">
+                <p><%= user.name %></p>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        <% } %>   
+    </header>
+    <% if(user && !user.isVerified){ %>
+        <p>Please verify your email address by sending link to your email address!<a href="/users/resend">Send</a></p>
+    <% } %>  
+</body>
+</html>

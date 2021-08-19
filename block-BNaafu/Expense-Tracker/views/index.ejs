@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
+  <body>
+    <header class="container">
+      <p class="error">
+        <% if(error){ %>
+            <p><%=error%></p>
+        <% } %> 
+    </p>
+      <%include partials/header%>
+    </header>
+    <main>
+      <section class="container">
+        Home
+      </section>
+    </main>
+  </body>
+</html>
